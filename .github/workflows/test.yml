@@ -1,0 +1,25 @@
+name: test conditional runs
+
+on:
+  push:
+    branches:
+      - main
+      - other
+
+jobs:
+  test-main:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run tests
+        run: echo "Running test on main branch"
+  test-other:
+    if: github.ref == 'refs/heads/other'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run tests
+        run: echo "Running test on other branch"
