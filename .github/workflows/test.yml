@@ -22,7 +22,7 @@ jobs:
           git fetch origin
           git checkout cwt-main
           git rebase main
-          git push origin cwt-main
+          gh pr create --base cwt-main --head cwt-main --title "Sync main to cwt-main" --body "Used Rebase to sync main to cwt-main"
 
   sync-branches-echo:
     runs-on: ubuntu-latest
@@ -36,9 +36,9 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-      - name: Rebase main to cwt-main
+      - name: Rebase main to echo-main
         run: |
           git fetch origin
           git checkout echo-main
           git rebase main
-          git push origin echo-main
+          gh pr create --base echo-main --head echo-main --title "Sync main to echo-main" --body "Used Rebase to sync main to echo-main"
