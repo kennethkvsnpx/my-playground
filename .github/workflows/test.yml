@@ -5,9 +5,9 @@ on:
       - main
 
 jobs:
-  sync-branches-echo:
+  sync-branches-cwt:
     runs-on: ubuntu-latest
-    name: Syncing to echo-main
+    name: Syncing to cwt-main
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -17,9 +17,9 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-      - name: Rebase main to echo-main
+      - name: Rebase main to cwt-main
         run: |
           git fetch origin
-          git checkout echo-main
+          git checkout cwt-main
           git rebase main
-          git push origin echo-main
+          git push origin cwt-main
