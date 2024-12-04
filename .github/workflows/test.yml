@@ -5,22 +5,21 @@ on:
       - main
 
 jobs:
-  sync-branches:
+  sync-branches-echo:
     runs-on: ubuntu-latest
-    name: Syncing branches
+    name: Syncing to echo-main
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Set up Node
-        uses: actions/setup-node@v1
         with:
-          node-version: 18
-      - name: Opening pull request
-        id: pull
-        uses: tretuna/sync-branches@main
-        with:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          FROM_BRANCH: "main"
-          TO_BRANCH: "other"
-          CONTENT_COMPARISON: true
-          PULL_REQUEST_AUTO_MERGE_METHOD: "merge"
+          fetch-depth: 0
+      - name: Git Setup
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+      - name: Rebase main to echo-main
+        run: |
+          git fetch origin
+          git checkout echo-main
+          git rebase main
+          git push origin echo-main
