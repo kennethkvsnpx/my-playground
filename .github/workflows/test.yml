@@ -14,13 +14,13 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 18
       - name: Opening pull request
         id: pull
         uses: tretuna/sync-branches@main
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          FROM_BRANCH: "master"
-          TO_BRANCH: "echo-master"
+          FROM_BRANCH: "main"
+          TO_BRANCH: "other"
           CONTENT_COMPARISON: true
           PULL_REQUEST_AUTO_MERGE_METHOD: "merge"
