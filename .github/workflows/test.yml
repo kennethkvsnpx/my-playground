@@ -25,7 +25,7 @@ jobs:
           git checkout cwt-main
           git rebase main
           git commit -m "Sync main to cwt-main" 
-          gh pr create --base cwt-main --head cwt-main --title "Sync main to cwt-main" --body "Used Rebase to sync main to cwt-main"
+          git push
 
   sync-branches-echo:
     runs-on: ubuntu-latest
@@ -47,4 +47,4 @@ jobs:
           git checkout echo-main
           git rebase main
           git commit -m "Sync main to echo-main"
-          gh pr create --base echo-main --head echo-main --title "Sync main to echo-main" --body "Used Rebase to sync main to echo-main"
+          git push
