@@ -1,25 +1,26 @@
-name: test conditional runs
-
+name: Sync from main to other
 on:
   push:
     branches:
       - main
-      - other
 
 jobs:
-  test-main:
-    if: github.ref == 'refs/heads/main'
+  sync-branches:
     runs-on: ubuntu-latest
+    name: Syncing branches
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v2
-      - name: Run tests
-        run: echo "Running test on main branch"
-  test-other:
-    if: github.ref == 'refs/heads/other'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Run tests
-        run: echo "Running test on other branch"
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Opening pull request
+        id: pull
+        uses: tretuna/sync-branches@main
+        with:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          FROM_BRANCH: "master"
+          TO_BRANCH: "echo-master"
+          CONTENT_COMPARISON: true
+          PULL_REQUEST_AUTO_MERGE_METHOD: "merge"
