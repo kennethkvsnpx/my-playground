@@ -1,0 +1,48 @@
+name: Sync from main to other
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync-branches-cwt:
+    runs-on: ubuntu-latest
+    name: Syncing to cwt-main
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Git Setup
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+      - name: Rebase main to cwt-main
+        run: |
+          git fetch origin
+          git checkout cwt-main
+          git rebase origin/main
+          git push --force origin cwt-main
+
+  sync-branches-echo:
+    runs-on: ubuntu-latest
+    name: Syncing to echo-main
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Git Setup
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+      - name: Rebase main to echo-main
+        run: |
+          git fetch origin
+          git checkout echo-main
+          git rebase origin/main
+          git push --force origin echo-main

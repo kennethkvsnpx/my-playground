@@ -2,7 +2,7 @@ name: Sync from main to cwt
 on:
   push:
     branches:
-      - main
+      - other
 
 jobs:
   sync-branches:
