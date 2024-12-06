@@ -1,5 +1,3 @@
 # my-playground
 
-woah
-lol
-again
+cwt-changes
