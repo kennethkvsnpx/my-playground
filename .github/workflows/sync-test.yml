@@ -23,6 +23,7 @@ jobs:
         run: |
           git fetch origin
           git checkout cwt-main
+          git pull
           git rebase origin/main
           git push origin cwt-main
 
@@ -44,5 +45,6 @@ jobs:
         run: |
           git fetch origin
           git checkout echo-main
+          git pull
           git rebase origin/main
           git push origin echo-main
