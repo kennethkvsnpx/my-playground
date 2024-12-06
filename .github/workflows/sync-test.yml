@@ -24,7 +24,7 @@ jobs:
           git fetch origin
           git checkout cwt-main
           git rebase origin/main
-          git push --force origin cwt-main
+          git push origin cwt-main
 
   sync-branches-echo:
     runs-on: ubuntu-latest
@@ -45,4 +45,4 @@ jobs:
           git fetch origin
           git checkout echo-main
           git rebase origin/main
-          git push --force origin echo-main
+          git push origin echo-main
