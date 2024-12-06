@@ -24,7 +24,7 @@ jobs:
           git fetch origin
           git checkout cwt-main
           git rebase origin/main
-          git pull
+          git pull --ff-only
           git push origin cwt-main
 
   sync-branches-echo:
@@ -46,5 +46,5 @@ jobs:
           git fetch origin
           git checkout echo-main
           git rebase origin/main
-          git pull
+          git pull --ff-only
           git push origin echo-main
